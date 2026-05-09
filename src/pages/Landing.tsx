@@ -310,7 +310,7 @@ export default function Landing() {
           >
             <div className="absolute -inset-20 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 blur-[100px] opacity-40 -z-10 rounded-full" />
             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black text-white mb-10 leading-tight italic tracking-tighter">
-              "Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400">browser</span> is no longer aviewer.<br />It's a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400">Powerhouse.</span>"
+              "Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400">browser</span> is no longer a viewer.<br />It's a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400">Powerhouse.</span>"
             </h2>
             <div className="text-cyan-500 font-black text-xs sm:text-sm uppercase tracking-[1em] opacity-60">WOW: Work On Web</div>
           </motion.div>
