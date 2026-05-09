@@ -1,5 +1,5 @@
 
-import { ChevronLeft, Info, X, ShieldCheck, CheckCircle2, AlertTriangle, Settings2, Grid2X2 } from "lucide-react"
+import { ChevronLeft, Info, ShieldCheck, CheckCircle2, AlertTriangle, Settings2 } from "lucide-react"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -17,16 +17,12 @@ interface ToolLayoutProps {
 
 export default function ToolLayout({ title, description, icon, children, sidebar, secondarySidebar, toolId }: ToolLayoutProps) {
   const [showInfo, setShowInfo] = useState(false)
-  const [showMobileOptions, setShowMobileOptions] = useState(false)
-  const [showMobileThumbnails, setShowMobileThumbnails] = useState(false)
   const info = toolId ? getToolInfo(toolId) : null
 
   // Close drawers when resizing to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        setShowMobileOptions(false)
-        setShowMobileThumbnails(false)
       }
     }
     window.addEventListener('resize', handleResize)
@@ -125,122 +121,39 @@ export default function ToolLayout({ title, description, icon, children, sidebar
       </div>
 
       {/* Sidebars & Main Content */}
-      <div className="flex-1 flex overflow-hidden pt-4 md:pt-16 gap-0 lg:gap-6">
-        {/* PC: Page Thumbnails (Left Sidebar) */}
-        <AnimatePresence>
-          {secondarySidebar && (
-            <motion.div
-              initial={{ x: -200, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -200, opacity: 0 }}
-              className="w-32 border-r border-white/5 bg-black/20 flex flex-col hidden lg:flex"
-            >
-              <div className="p-4 border-b border-white/5">
-                <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest">Pages</span>
-              </div>
-              <div className="flex-1 overflow-y-auto p-4 custom-scrollbar flex flex-col gap-4 items-center">
-                {secondarySidebar}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden pt-4 lg:pt-16 gap-6 lg:gap-6">
+        
+        {/* Page Thumbnails (Left Sidebar / Top on Mobile) */}
+        {secondarySidebar && (
+          <div className="w-full lg:w-32 border-b lg:border-r border-white/5 bg-black/20 flex flex-col">
+            <div className="p-3 lg:p-4 border-b border-white/5 flex items-center justify-between">
+              <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest">Pages</span>
+            </div>
+            <div className="flex-1 overflow-x-auto lg:overflow-y-auto p-3 lg:p-4 custom-scrollbar flex flex-row lg:flex-col gap-3 lg:gap-4 items-center">
+              {secondarySidebar}
+            </div>
+          </div>
+        )}
 
         {/* Main Workspace */}
-        <main className="flex-1 relative overflow-hidden flex flex-col min-w-0">
-          <div className="flex-1 overflow-y-auto p-2 md:p-8 custom-scrollbar glass-panel rounded-3xl">
+        <main className="flex-1 relative overflow-hidden flex flex-col min-w-0 min-h-[500px]">
+          <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar glass-panel rounded-3xl">
             {children}
-          </div>
-
-          {/* Mobile Floating Action Buttons */}
-          <div className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] flex gap-3">
-            {secondarySidebar && (
-              <button 
-                onClick={() => setShowMobileThumbnails(true)}
-                className="p-4 rounded-2xl bg-blue-600 text-white shadow-2xl flex items-center gap-2 font-bold text-sm"
-              >
-                <Grid2X2 size={20} />
-                <span className="hidden sm:inline">Pages</span>
-              </button>
-            )}
-            {sidebar && (
-              <button 
-                onClick={() => setShowMobileOptions(true)}
-                className="p-4 rounded-2xl bg-white text-black shadow-2xl flex items-center gap-2 font-bold text-sm"
-              >
-                <Settings2 size={20} />
-                <span className="hidden sm:inline">Options</span>
-              </button>
-            )}
           </div>
         </main>
 
-        {/* PC: Options Sidebar */}
+        {/* Options Sidebar (Right Sidebar / Bottom on Mobile) */}
         {sidebar && (
-          <div className="hidden lg:flex w-80 flex-shrink-0 glass-panel rounded-3xl p-6 flex flex-col gap-6">
-            <h3 className="text-lg font-semibold text-white border-b border-white/10 pb-4">Options</h3>
+          <div className="w-full lg:w-80 flex-shrink-0 glass-panel rounded-3xl p-6 flex flex-col gap-6 lg:mt-0 mt-6">
+            <h3 className="text-lg font-semibold text-white border-b border-white/10 pb-4 flex items-center gap-2">
+              <Settings2 size={18} className="text-blue-400" />
+              Options
+            </h3>
             <div className="flex-1 flex flex-col gap-4">
               {sidebar}
             </div>
           </div>
         )}
-
-        {/* Mobile: Thumbnails Drawer */}
-        <AnimatePresence>
-          {showMobileThumbnails && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setShowMobileThumbnails(false)}
-                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[150] lg:hidden"
-              />
-              <motion.div
-                initial={{ x: "-100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "-100%" }}
-                className="fixed inset-y-0 left-0 w-[70%] max-w-[280px] bg-[#0a0a0b] border-r border-white/10 z-[160] lg:hidden flex flex-col p-6 shadow-2xl"
-              >
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-xl font-bold text-white">Pages</h3>
-                  <button onClick={() => setShowMobileThumbnails(false)} className="p-2 text-white/50"><X size={24} /></button>
-                </div>
-                <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-6 items-center">
-                  {secondarySidebar}
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
-
-        {/* Mobile: Options Drawer */}
-        <AnimatePresence>
-          {showMobileOptions && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setShowMobileOptions(false)}
-                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[150] lg:hidden"
-              />
-              <motion.div
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "100%" }}
-                className="fixed inset-x-0 bottom-0 h-[80%] bg-[#0a0a0b] border-t border-white/10 z-[160] lg:hidden flex flex-col p-8 shadow-2xl rounded-t-[3rem]"
-              >
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl font-bold text-white">Tool Options</h3>
-                  <button onClick={() => setShowMobileOptions(false)} className="p-2 text-white/50"><X size={24} /></button>
-                </div>
-                <div className="flex-1 overflow-y-auto custom-scrollbar">
-                  {sidebar}
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
       </div>
     </div>
   )

@@ -18,7 +18,7 @@ const ToolCategory = ({ title, icon: Icon, tools, color }: { title: string, icon
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: index * 0.05 }}
+          transition={{ delay: index * 0.03 }}
         >
           <Link
             to={tool.path}

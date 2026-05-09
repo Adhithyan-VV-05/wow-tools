@@ -82,10 +82,10 @@ export default function Landing() {
 
       <div className="font-outfit flex flex-col items-center pt-20 relative min-h-screen overflow-x-hidden bg-[#030305] text-white">
         <div className="fixed inset-0 -z-30 overflow-hidden pointer-events-none">
-          {[...Array(30)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute rounded-full"
+              className="absolute rounded-full will-change-transform"
               style={{
                 width: Math.random() * 4 + 2 + "px",
                 height: Math.random() * 4 + 2 + "px",
@@ -94,12 +94,12 @@ export default function Landing() {
                 top: Math.random() * 100 + "%",
               }}
               animate={{
-                y: [0, -300, 0],
-                x: [0, (Math.random() - 0.5) * 150, 0],
-                opacity: [0.1, 0.7, 0.1],
-                scale: [1, 2.5, 1],
+                y: [0, -200, 0],
+                x: [0, (Math.random() - 0.5) * 100, 0],
+                opacity: [0.1, 0.6, 0.1],
+                scale: [1, 2, 1],
               }}
-              transition={{ duration: 10 + Math.random() * 15, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 8 + Math.random() * 10, repeat: Infinity, ease: "linear" }}
             />
           ))}
         </div>
@@ -164,12 +164,11 @@ export default function Landing() {
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-32">
-            <Link to="/tools">
+            <Link to="/tools" className="w-full sm:w-auto">
               <motion.div
-                whileHover={{ y: -8, scale: 1.02, boxShadow: "0px 20px 40px -10px rgba(59,130,246,0.6)" }}
-                whileTap={{ scaleX: 1.1, scaleY: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                className="group relative px-12 py-6 sm:px-16 sm:py-8 bg-white text-black font-black rounded-full text-lg sm:text-xl overflow-hidden flex items-center justify-center"
+                whileHover={{ y: -5, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative px-12 py-6 sm:px-16 sm:py-8 bg-white text-black font-black rounded-full text-lg sm:text-xl overflow-hidden flex items-center justify-center shadow-xl"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="relative z-10 flex items-center gap-2">
@@ -178,12 +177,11 @@ export default function Landing() {
               </motion.div>
             </Link>
 
-            <Link to="/workspace">
+            <Link to="/workspace" className="w-full sm:w-auto">
               <motion.div
-                whileHover={{ borderRadius: "16px", scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(0,240,255,0.5)" }}
-                whileTap={{ rotate: -5, scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="px-12 py-6 sm:px-16 sm:py-8 bg-transparent border-2 border-white/10 text-white font-bold rounded-full text-lg sm:text-xl transition-all shadow-xl flex items-center justify-center"
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                whileTap={{ scale: 0.98 }}
+                className="px-12 py-6 sm:px-16 sm:py-8 bg-transparent border-2 border-white/10 text-white font-bold rounded-full text-lg sm:text-xl transition-all flex items-center justify-center"
               >
                 Workspace
               </motion.div>
@@ -305,7 +303,7 @@ export default function Landing() {
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
             className="relative py-20 sm:p-20"
           >
             <div className="absolute -inset-20 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 blur-[100px] opacity-40 -z-10 rounded-full" />

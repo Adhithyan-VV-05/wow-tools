@@ -16,7 +16,7 @@ export default function Navbar() {
   useEffect(() => {
     const timer = setInterval(() => {
       setTitleIndex((prev) => (prev + 1) % titles.length)
-    }, 4000)
+    }, 2500)
     return () => clearInterval(timer)
   }, [])
 
@@ -34,7 +34,7 @@ export default function Navbar() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="font-bold text-lg tracking-tight text-white group-hover:text-glow absolute inset-0"
               >
                 {titles[titleIndex]}
@@ -137,9 +137,10 @@ export default function Navbar() {
       <AnimatePresence>
         {showMobileMenu && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
             className="absolute top-20 inset-x-4 glass-panel rounded-3xl p-6 md:hidden flex flex-col gap-4 shadow-2xl pointer-events-auto border border-white/10 max-h-[80vh] overflow-y-auto custom-scrollbar"
           >
             <div className="flex flex-col gap-2">
