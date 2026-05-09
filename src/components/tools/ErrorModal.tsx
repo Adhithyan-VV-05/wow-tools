@@ -1,6 +1,5 @@
-import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, AlertCircle, RefreshCcw, ShieldAlert, FileWarning } from "lucide-react"
+import { X, RefreshCcw, ShieldAlert, FileWarning } from "lucide-react"
 
 interface ErrorModalProps {
   isOpen: boolean

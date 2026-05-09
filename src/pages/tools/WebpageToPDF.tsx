@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { jsPDF } from "jspdf"
-import { Globe, Download, Trash2, Zap, Layout, Monitor, MousePointer } from "lucide-react"
+import { Globe, Trash2, Monitor, MousePointer } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import { useAppStore } from "@/store/useAppStore"

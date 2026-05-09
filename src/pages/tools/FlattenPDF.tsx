@@ -1,8 +1,8 @@
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import { PDFDocument } from "pdf-lib"
 import * as pdfjsLib from "pdfjs-dist"
 import { saveAs } from "file-saver"
-import { Layers, Download, Trash2, ShieldCheck, Loader2 } from "lucide-react"
+import { Layers, Trash2, ShieldCheck, Loader2 } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"
@@ -58,8 +58,9 @@ export default function FlattenPDF() {
         
         await page.render({
           canvasContext: ctx!,
-          viewport: viewport
-        } as any).promise
+          viewport: viewport,
+          canvas: canvas
+        }).promise
         
         const imageData = canvas.toDataURL('image/jpeg', 0.85)
         const image = await outPdf.embedJpg(imageData)

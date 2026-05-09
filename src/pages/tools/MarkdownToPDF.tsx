@@ -1,8 +1,8 @@
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { jsPDF } from "jspdf"
 import { marked } from "marked"
 import DOMPurify from "dompurify"
-import { FileText, Download, Trash2, Edit3, Eye, FileType } from "lucide-react"
+import { Download, Trash2, Edit3, Eye, FileType } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"
@@ -12,7 +12,6 @@ export default function MarkdownToPDF() {
   const [markdown, setMarkdown] = useState("")
   const [isProcessing, setIsProcessing] = useState(false)
   const [view, setView] = useState<'edit' | 'preview'>('edit')
-  const previewRef = useRef<HTMLDivElement>(null)
   
   const addRecentTool = useAppStore(state => state.addRecentTool)
 

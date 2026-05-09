@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { PDFDocument, rgb, degrees } from "pdf-lib"
+import { PDFDocument, rgb } from "pdf-lib"
 import * as pdfjsLib from "pdfjs-dist"
 import { saveAs } from "file-saver"
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`
-import { Layout, Download, Trash2, Zap, Monitor, Square, Eraser } from "lucide-react"
+import { Layout, Trash2, Monitor, Square, Eraser } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"
@@ -30,14 +30,8 @@ export default function PDFLayoutPro() {
     try {
       const arrayBuffer = await file.arrayBuffer()
       const pdfDoc = await PDFDocument.load(arrayBuffer)
-      const pages = pdfDoc.getPages()
       
-      pages.forEach(page => {
-        // High-level grayscale in pdf-lib is tricky without low-level content stream editing
-        // But we can add a semi-transparent gray overlay or warn the user.
-        // For a true grayscale, we usually need to process images individually.
-        // We will implement a visual border/layout tool instead as requested.
-      })
+      // We will implement a visual border/layout tool instead as requested.
 
       const pdfBytes = await pdfDoc.save()
       const blob = new Blob([pdfBytes as any], { type: "application/pdf" })

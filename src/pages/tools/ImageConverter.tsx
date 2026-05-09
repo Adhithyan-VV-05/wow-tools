@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { saveAs } from "file-saver"
-import { Image as ImageIcon, Download, Trash2, ArrowRightLeft, FileType } from "lucide-react"
+import { Trash2, ArrowRightLeft, FileType } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { jsPDF } from "jspdf"
-import { FileText, Download, Trash2, AlignLeft, Settings2 } from "lucide-react"
+import { Download, Trash2, AlignLeft } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"

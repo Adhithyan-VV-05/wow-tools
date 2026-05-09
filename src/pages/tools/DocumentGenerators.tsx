@@ -8,7 +8,6 @@ import { useAppStore } from "@/store/useAppStore"
 export default function DocumentGenerators() {
   const [mode, setMode] = useState<'resume' | 'invoice' | 'certificate'>('resume')
   const [formData, setFormData] = useState<any>({})
-  const [isProcessing, setIsProcessing] = useState(false)
   
   const addRecentTool = useAppStore(state => state.addRecentTool)
 
@@ -17,7 +16,6 @@ export default function DocumentGenerators() {
   })
 
   const generatePDF = () => {
-    setIsProcessing(true)
     const toastId = toast.loading(`Generating ${mode}...`)
 
     try {
@@ -72,7 +70,6 @@ export default function DocumentGenerators() {
     } catch (error) {
       toast.error("Generation failed.", { id: toastId })
     } finally {
-      setIsProcessing(false)
     }
   }
 

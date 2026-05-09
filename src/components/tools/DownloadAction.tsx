@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Download, Edit3, Check, Eye } from "lucide-react"
 import { saveAs } from "file-saver"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
 interface DownloadActionProps {
   blob: Blob | null
   defaultFilename: string
   onDownload?: (filename: string) => void
-  previewUrl?: string | null
   onPreview?: () => void
 }
 
-export default function DownloadAction({ blob, defaultFilename, onDownload, previewUrl, onPreview }: DownloadActionProps) {
+export default function DownloadAction({ blob, defaultFilename, onDownload, onPreview }: DownloadActionProps) {
   const [filename, setFilename] = useState(defaultFilename)
   const [isEditing, setIsEditing] = useState(false)
   const [isPreviewed, setIsPreviewed] = useState(false)

@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { PDFDocument } from "pdf-lib"
 import { fabric } from "fabric"
-import { saveAs } from "file-saver"
 import { FileEdit, Trash2, Pencil, Type, Square, Circle, Eraser, Undo, Redo, X, Check, Save, FolderOpen } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
@@ -88,8 +87,9 @@ export default function PDFEditor() {
         
         await page.render({
           canvasContext: ctx!,
-          viewport: viewport
-        } as any).promise
+          viewport: viewport,
+          canvas: canvas
+        }).promise
         
         pageInfoList.push({
           index: i - 1,

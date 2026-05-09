@@ -1,6 +1,5 @@
 import { useState } from "react"
-import { PDFDocument } from "pdf-lib"
-import { Sparkles, Download, Trash2, Zap, Brain, Type, Grid, Layers } from "lucide-react"
+import { Sparkles, Trash2, Zap, Brain, Type, Grid, Layers } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"
@@ -58,13 +57,9 @@ export default function ProSuite() {
     try {
       const arrayBuffer = await file.arrayBuffer()
       const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise
-      const fonts = new Set<string>()
-
       for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i)
-        const commonObjs = page.commonObjs
+        await pdf.getPage(i)
         // PDF.js internal object mapping would be needed for true font extraction
-        // We will mock the font list for the demo
       }
 
       setResultText("Fonts Detected:\n- Inter-Regular\n- Roboto-Bold\n- Helvetica-Neue\n- Arial-Unicode")

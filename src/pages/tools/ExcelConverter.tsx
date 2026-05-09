@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { utils, read, write } from "xlsx"
+import { utils, read } from "xlsx"
 import { jsPDF } from "jspdf"
-import { FileSpreadsheet, Download, Trash2, ArrowRightLeft, FileType, Table as TableIcon } from "lucide-react"
+import { FileSpreadsheet, Download, Trash2, Table as TableIcon } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"
@@ -53,7 +53,7 @@ export default function ExcelConverter() {
       const margin = 10
       const colWidth = 40
       
-      data.forEach((row, rowIndex) => {
+      data.forEach((row) => {
         if (y > 280) {
           doc.addPage()
           y = 20

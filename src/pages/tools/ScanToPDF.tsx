@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from "react"
 import Webcam from "react-webcam"
 import { jsPDF } from "jspdf"
-import { Camera, Download, Trash2, Zap, Image as ImageIcon, Check, X, CameraOff } from "lucide-react"
+import { Camera, Download, Trash2, CameraOff } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import { useAppStore } from "@/store/useAppStore"

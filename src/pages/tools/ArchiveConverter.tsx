@@ -3,7 +3,7 @@ import JSZip from "jszip"
 import { saveAs } from "file-saver"
 import { jsPDF } from "jspdf"
 import * as pdfjsLib from "pdfjs-dist"
-import { FileArchive, FileText, Download, Trash2, Zap, Package, ArchiveRestore } from "lucide-react"
+import { FileArchive, FileText, Trash2, Zap, Package } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"
@@ -49,7 +49,7 @@ export default function ArchiveConverter() {
         canvas.width = viewport.width
         canvas.height = viewport.height
         
-        await page.render({ canvasContext: ctx!, viewport }).promise
+        await page.render({ canvasContext: ctx!, viewport, canvas }).promise
         const dataUrl = canvas.toDataURL("image/png")
         const base64Data = dataUrl.split(",")[1]
         imgFolder?.file(`page_${i}.png`, base64Data, { base64: true })

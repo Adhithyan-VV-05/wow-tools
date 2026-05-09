@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { PDFDocument } from "pdf-lib"
 import { saveAs } from "file-saver"
-import { Lock, Unlock, Download, Trash2, Key, RefreshCw, Eye, EyeOff, ShieldCheck } from "lucide-react"
+import { Lock, Trash2, RefreshCw, Eye, EyeOff, ShieldCheck } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"

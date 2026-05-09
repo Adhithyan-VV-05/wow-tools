@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react"
-import { Search, FileText, Download, Trash2, Highlighter, ArrowRight, Copy } from "lucide-react"
+import { Search, FileText, Trash2, Copy } from "lucide-react"
 import { setupPdfWorker, pdfjsLib } from "@/lib/pdfWorker"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
@@ -10,7 +10,6 @@ export default function KeywordFinder() {
   const [file, setFile] = useState<File | null>(null)
   const [extractedText, setExtractedText] = useState("")
   const [searchQuery, setSearchQuery] = useState("")
-  const [isProcessing, setIsProcessing] = useState(false)
   
   const addRecentTool = useAppStore(state => state.addRecentTool)
 
@@ -23,7 +22,6 @@ export default function KeywordFinder() {
     if (newFiles.length === 0) return
     const selectedFile = newFiles[0]
     setFile(selectedFile)
-    setIsProcessing(true)
     const toastId = toast.loading("Extracting text for searching...")
 
     try {
@@ -47,7 +45,7 @@ export default function KeywordFinder() {
       console.error(error)
       toast.error("Failed to extract text.", { id: toastId })
     } finally {
-      setIsProcessing(false)
+      // Done
     }
   }
 

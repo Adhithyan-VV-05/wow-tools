@@ -1,7 +1,6 @@
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import { PDFDocument, degrees } from "pdf-lib"
-import { saveAs } from "file-saver"
-import { LayoutGrid, Download, Trash2, RotateCw, Copy, GripVertical, Check, Loader2, FileText } from "lucide-react"
+import { LayoutGrid, Trash2, RotateCw, Copy, Loader2, FileText } from "lucide-react"
 import { Reorder } from "framer-motion"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
@@ -65,8 +64,9 @@ export default function OrganizePDF() {
         
         await page.render({
           canvasContext: ctx!,
-          viewport: viewport
-        } as any).promise
+          viewport: viewport,
+          canvas: canvas
+        }).promise
         
         pageItems.push({
           id: Math.random().toString(36).substring(7),

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { PDFDocument, rgb } from "pdf-lib"
-import { ShieldAlert, Download, Trash2, Eraser, Move, Square } from "lucide-react"
+import { ShieldAlert, Download, Trash2, Move } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"
@@ -41,7 +41,7 @@ export default function RedactPDF() {
     canvas.height = viewport.height
     canvas.width = viewport.width
     
-    await page.render({ canvasContext: context!, viewport }).promise
+    await page.render({ canvasContext: context!, viewport, canvas }).promise
     
     // Draw existing redactions
     context!.fillStyle = "rgba(0,0,0,0.8)"

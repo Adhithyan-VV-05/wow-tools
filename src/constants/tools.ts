@@ -1,12 +1,12 @@
 import { 
-  FileText, Image as ImageIcon, ShieldCheck, Zap, Search, 
-  FileType, PenTool, Scissors, FileSpreadsheet, Wrench, 
-  Package, Camera, FilePlus, Layout, Monitor, Globe,
-  ShieldAlert, Brain, Type, Grid, Layers, RotateCw, 
-  Maximize, Minimize, PlusCircle, Trash2, Split, Merge,
-  FileArchive, FileVideo, FileCode, Wand2, Eraser, Pen,
-  Highlighter, Binary, Table, List, Settings, Eye,
-  Lock, Unlock, FileSearch, Fingerprint, Files, LayoutGrid
+  ShieldCheck, 
+  FileType, PenTool, 
+  FilePlus,
+  Brain,
+  Minimize, Merge,
+  Wand2,
+  Binary,
+  LayoutGrid
 } from "lucide-react"
 
 export const TOOL_CATEGORIES = [

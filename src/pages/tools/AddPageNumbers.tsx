@@ -1,7 +1,6 @@
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib"
-import { saveAs } from "file-saver"
-import { Hash, Download, Trash2, Settings2, AlignCenter, AlignLeft, AlignRight } from "lucide-react"
+import { Hash, Trash2, AlignCenter, AlignRight } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"
@@ -22,7 +21,6 @@ export default function AddPageNumbers() {
   const [position, setPosition] = useState<'bottom-center' | 'bottom-right' | 'top-center'>('bottom-center')
   const [format, setFormat] = useState('Page {n} of {total}')
   const [fontSize, setFontSize] = useState(12)
-  const [color, setColor] = useState("#666666")
 
   const [pages, setPages] = useState<{ url: string, width: number, height: number, index: number }[]>([])
   const [totalPages, setTotalPages] = useState(0)
@@ -73,7 +71,7 @@ export default function AddPageNumbers() {
         canvas.width = viewport.width
         canvas.height = viewport.height
         
-        await page.render({ canvasContext: ctx!, viewport }).promise
+        await page.render({ canvasContext: ctx!, viewport, canvas }).promise
         pagePreviews.push({ 
           url: canvas.toDataURL(),
           width: viewport.width * 2,
@@ -127,7 +125,7 @@ export default function AddPageNumbers() {
       const pdfDoc = await PDFDocument.load(arrayBuffer)
       const font = await pdfDoc.embedFont(StandardFonts.Helvetica)
       const pages = pdfDoc.getPages()
-      const textColor = hexToRgb(color)
+      const textColor = hexToRgb("#666666")
 
       pages.forEach((page, idx) => {
         const { width, height } = page.getSize()
@@ -317,7 +315,7 @@ export default function AddPageNumbers() {
           {pages.map((page, idx) => (
             <div 
               key={idx} 
-              ref={el => pageRefs.current[idx] = el}
+              ref={el => { pageRefs.current[idx] = el }}
               className="relative mx-auto bg-white shadow-2xl rounded-sm overflow-hidden" 
               style={{ width: 'fit-content' }}
             >
@@ -335,7 +333,7 @@ export default function AddPageNumbers() {
                 <div 
                   className="font-medium transition-all duration-200 select-none bg-white/80 px-2 py-0.5 rounded shadow-sm border border-black/5"
                   style={{ 
-                    color: color, 
+                    color: "#666666", 
                     fontSize: `${(fontSize / 600) * page.width}px`,
                   }}
                 >

@@ -58,8 +58,9 @@ export default function PDFToImage() {
         
         await page.render({
           canvasContext: ctx!,
-          viewport: viewport
-        } as any).promise
+          viewport: viewport,
+          canvas: canvas
+        }).promise
         
         convertedImages.push({
           index: i,

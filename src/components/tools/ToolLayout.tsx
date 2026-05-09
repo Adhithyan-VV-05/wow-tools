@@ -1,5 +1,5 @@
 
-import { ChevronLeft, Info, X, ShieldCheck, CheckCircle2, AlertTriangle, Menu, Settings2, Grid2X2 } from "lucide-react"
+import { ChevronLeft, Info, X, ShieldCheck, CheckCircle2, AlertTriangle, Settings2, Grid2X2 } from "lucide-react"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"

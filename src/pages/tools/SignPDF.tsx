@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect } from "react"
 import { PDFDocument } from "pdf-lib"
 import { fabric } from "fabric"
-import { saveAs } from "file-saver"
 import SignatureCanvas from "react-signature-canvas"
-import { PenTool, Download, Trash2, Plus, Type, Upload, Check, X, ShieldCheck, Palette, Layout, MousePointer2 } from "lucide-react"
+import { PenTool, Download, Trash2, Plus, Type, Check, X, ShieldCheck, MousePointer2 } from "lucide-react"
 import { useLiveQuery } from "dexie-react-hooks"
 import { db } from "@/db/db"
 import toast from "react-hot-toast"
@@ -16,13 +15,10 @@ import PageThumbnail from "@/components/tools/PageThumbnail"
 import DownloadAction from "@/components/tools/DownloadAction"
 import ResultPreview from "@/components/tools/ResultPreview"
 import ErrorModal from "@/components/tools/ErrorModal"
-import { motion } from "framer-motion"
 
 export default function SignPDF() {
   const [file, setFile] = useState<File | null>(null)
   const [pages, setPages] = useState<{ url: string, index: number }[]>([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [loadProgress, setLoadProgress] = useState(0)
   const [isProcessing, setIsProcessing] = useState(false)
   const [processedBlob, setProcessedBlob] = useState<Blob | null>(null)
   const [showPreview, setShowPreview] = useState(false)
@@ -56,8 +52,6 @@ export default function SignPDF() {
     }
 
     setFile(selectedFile)
-    setIsLoading(true)
-    setLoadProgress(0)
     setPlacedSigns({})
     setProcessedBlob(null)
     const toastId = toast.loading("Processing PDF...")
@@ -76,9 +70,8 @@ export default function SignPDF() {
         canvas.width = viewport.width
         canvas.height = viewport.height
         
-        await page.render({ canvasContext: ctx!, viewport }).promise
+        await page.render({ canvasContext: ctx!, viewport, canvas }).promise
         pageList.push({ url: canvas.toDataURL(), index: i - 1 })
-        setLoadProgress(Math.round((i / pagesToLoad) * 100))
       }
 
       setPages(pageList)
@@ -103,7 +96,7 @@ export default function SignPDF() {
       setFile(null)
       toast.error("Failed to load PDF.", { id: toastId })
     } finally {
-      setIsLoading(false)
+      // Done
     }
   }
 

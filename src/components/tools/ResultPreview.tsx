@@ -1,6 +1,5 @@
-import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Eye, Download, FileText, Image as ImageIcon } from "lucide-react"
+import { X, Eye, FileText, Image as ImageIcon } from "lucide-react"
 
 interface ResultPreviewProps {
   isOpen: boolean

@@ -12,7 +12,6 @@ export default function Navbar() {
   const [showMegaMenu, setShowMegaMenu] = useState(false)
   const [activeMobileCategory, setActiveMobileCategory] = useState<string | null>(null)
   const titles = ["WOW-Tools", "Work On Web"]
-  const totalTools = TOOL_CATEGORIES.reduce((acc, cat) => acc + cat.tools.length, 0)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -66,7 +65,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: 10, scale: 0.98 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                  transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                  transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] as const }}
                   className="fixed top-20 inset-x-4 md:inset-x-10 lg:inset-x-20 mt-4 pointer-events-auto z-[60]"
                 >
                   <div className="bg-[#0f1015] rounded-[3rem] p-12 grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-y-16 gap-x-12 shadow-[0_50px_100px_-20px_rgba(0,0,0,1)] border border-white/10 overflow-y-auto max-h-[85vh] custom-scrollbar relative mx-auto max-w-7xl">

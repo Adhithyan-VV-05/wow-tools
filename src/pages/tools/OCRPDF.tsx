@@ -1,6 +1,6 @@
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import { createWorker } from "tesseract.js"
-import { FileText, Copy, Download, Trash2, Languages, Loader2, FileSearch } from "lucide-react"
+import { Copy, Trash2, Languages, Loader2, FileSearch } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"
@@ -11,7 +11,6 @@ import { setupPdfWorker, pdfjsLib } from "@/lib/pdfWorker"
 import DownloadAction from "@/components/tools/DownloadAction"
 import ResultPreview from "@/components/tools/ResultPreview"
 import ErrorModal from "@/components/tools/ErrorModal"
-import { motion } from "framer-motion"
 
 const LANGUAGES = [
   { code: 'eng', name: 'English' },
@@ -92,8 +91,9 @@ export default function OCRPDF() {
         
         await page.render({
           canvasContext: ctx!,
-          viewport: viewport
-        } as any).promise
+          viewport: viewport,
+          canvas: canvas
+        }).promise
         
         const imageData = canvas.toDataURL('image/png')
         const { data: { text } } = await worker.recognize(imageData)
@@ -130,15 +130,6 @@ export default function OCRPDF() {
     toast.success("Text copied to clipboard")
   }
 
-  const downloadText = () => {
-    const blob = new Blob([extractedText], { type: "text/plain" })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = `ocr_text_${file?.name.split('.')[0] || 'pdf'}.txt`
-    a.click()
-    URL.revokeObjectURL(url)
-  }
 
   const clearAll = () => {
     setFile(null)

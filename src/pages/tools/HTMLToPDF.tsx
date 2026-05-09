@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { jsPDF } from "jspdf"
 import DOMPurify from "dompurify"
-import { Code, Download, Trash2, Edit3, Eye, FileCode } from "lucide-react"
+import { Download, Trash2, Edit3, Eye, FileCode } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"

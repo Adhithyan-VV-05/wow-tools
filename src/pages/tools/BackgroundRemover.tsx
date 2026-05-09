@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { removeBackground } from "@imgly/background-removal"
-import { saveAs } from "file-saver"
-import { Sparkles, Download, Trash2, Image as ImageIcon, Loader2, ShieldCheck, Zap } from "lucide-react"
+import { Sparkles, Trash2, Loader2, ShieldCheck, Zap } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"
@@ -79,11 +78,6 @@ export default function BackgroundRemover() {
     }
   }
 
-  const handleDownload = () => {
-    if (resultBlob && originalFile) {
-      saveAs(resultBlob, `no-bg_${originalFile.name.split('.')[0]}.png`)
-    }
-  }
 
   const sidebar = (
     <div className="space-y-6">

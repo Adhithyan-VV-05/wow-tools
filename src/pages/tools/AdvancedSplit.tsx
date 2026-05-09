@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { PDFDocument } from "pdf-lib"
 import { saveAs } from "file-saver"
-import { Scissors, Download, Trash2, ArrowUpDown, ListOrdered, FileText } from "lucide-react"
+import { Scissors, Trash2, ArrowUpDown, ListOrdered, FileText } from "lucide-react"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"

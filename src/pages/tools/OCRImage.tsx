@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import { createWorker } from "tesseract.js"
 import { FileText, Copy, Download, Trash2, Languages, Loader2 } from "lucide-react"
 import toast from "react-hot-toast"

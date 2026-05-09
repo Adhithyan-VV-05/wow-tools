@@ -1,7 +1,7 @@
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import { PDFDocument, rgb, degrees, StandardFonts } from "pdf-lib"
-import { saveAs } from "file-saver"
-import { Stamp, Download, Trash2, Type, SlidersHorizontal, Settings2 } from "lucide-react"
+import { Stamp, Trash2, Type } from "lucide-react"
+import { motion } from "framer-motion"
 import toast from "react-hot-toast"
 import ToolLayout from "@/components/tools/ToolLayout"
 import FileUpload from "@/components/tools/FileUpload"
@@ -75,7 +75,7 @@ export default function AddWatermark() {
         canvas.width = viewport.width
         canvas.height = viewport.height
         
-        await page.render({ canvasContext: ctx!, viewport }).promise
+        await page.render({ canvasContext: ctx!, viewport, canvas }).promise
         pagePreviews.push({ 
           url: canvas.toDataURL(),
           width: viewport.width * 2,
@@ -335,7 +335,7 @@ export default function AddWatermark() {
           {pages.map((page, idx) => (
             <div 
               key={idx} 
-              ref={el => pageRefs.current[idx] = el}
+              ref={el => { pageRefs.current[idx] = el }}
               className="relative mx-auto bg-white shadow-2xl rounded-sm overflow-hidden" 
               style={{ width: 'fit-content' }}
             >
